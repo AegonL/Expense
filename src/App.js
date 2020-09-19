@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Outcome from "./components/Outcome";
+import Income from "./components/Income";
+import IncomeList from "./components/Income/IncomeList";
+const App = () => {
+  const [sum, setSum] = useState(0);
 
-function App() {
+  const onChangeHandlerOutcome = (value) => {
+    setSum((prevState) => prevState - value);
+    console.log(value);
+  };
+
+  const onChangeHandlerIncome = (value) => {
+    setSum((prevState) => prevState + value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <IncomeList />
+      <Outcome onChangeHandlerOutcome={onChangeHandlerOutcome} />
+      <Income onChangeHandlerIncome={onChangeHandlerIncome} />
+      You have {sum}$!
     </div>
   );
-}
+};
 
 export default App;
